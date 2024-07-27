@@ -7,12 +7,10 @@ const ProfileScreen = (): React.JSX.Element => {
     const [image, setImage] = useState(require("../assets/nanad.png"));
 
     const handleChangeName = () => {
-        setName("New Name");
-
+        setName(name == "Boriboon Srianekratha" ? "No name" : "Boriboon Srianekratha");
     }
     const handleChangeimage = () => {
-        setImage(require("../assets/cat.jpg"));
-
+        setImage(image == require("../assets/cat.jpg") ? require("../assets/nanad.png") : require("../assets/cat.jpg") );
     }
 
 

@@ -21,12 +21,17 @@ export default function App(): React.JSX.Element {
   },[fullname]);//this will run whenever 'fullname' change
 
 
+  const handleButtonClick=()=>{
+    Alert.alert("Hello", `Imput your full name : ${fullname} `);
+  }
+
+
  
  
   return (
     <View style={styles.container}>
       <AppHeader  fullname={fullname} message={message} />
-      <Content message={message} fullname={fullname} />
+      <Content message={message}  onButtonClick = {handleButtonClick} />
       <AppFooter footerMessage={footerMessage} />
       <TextInput
       style={stylesPractice.input}

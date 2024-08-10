@@ -5,12 +5,14 @@ import ProfileScreen from './components/ProfileScreen'
 import UseEffectExample from './components/UseEffectExample'
 import FlastListExample from './components/FlastListExample'
 import FlatListcallBackend from './components/FlatListcallBackend'
+import Newsapp from './components/NewsApp'
 const App = (): React.JSX.Element => {
     return (
         <View>
             {/* <UseEffectExample /> */}
-            <FlastListExample/>
-            <FlatListcallBackend/>
+            {/* <FlastListExample/> */}
+            {/* <FlatListcallBackend/> */}
+            <Newsapp/>
         </View>
     )
 }

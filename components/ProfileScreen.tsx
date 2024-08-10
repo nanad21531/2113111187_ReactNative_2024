@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles'
+import Login from "./Login"
 const ProfileScreen = (): React.JSX.Element => {
 
     const [name, setName] = useState("Boriboon Srianekratha");
@@ -28,6 +29,7 @@ const ProfileScreen = (): React.JSX.Element => {
                 </View>
 
             </View>
+            <Login/>
         </View>
     )
 }

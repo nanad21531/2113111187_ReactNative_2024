@@ -34,10 +34,11 @@ export default function App(): React.JSX.Element {
       <Content message={message}  onButtonClick = {handleButtonClick} />
       <AppFooter footerMessage={footerMessage} />
       <TextInput
-        style={stylesPractice.input}
-        placeholder="Enter your fullname"
-        value={fullname}
-        onChangeText={setFullname}
+      style={stylesPractice.input}
+      placeholder="Enter your fullname"
+      value={fullname}
+      onChangeText={setFullname}
+
       />
     </View>
   );

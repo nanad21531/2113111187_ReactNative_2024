@@ -1,41 +1,38 @@
-import { StyleSheet, Text, View, Image, Button } from 'react-native'
-import React, { useState } from 'react'
-import { styles } from './styles'
-import Login from "./Login"
-const ProfileScreen = (): React.JSX.Element => {
+import React, { useState } from "react";
+import { View, Text, Image, Button } from "react-native";
+import { stylesProfile } from '../styles/styles' // เรียกใช้สไตล์จากไฟล์ styles.ts
+import Login from "./Login";
 
-    const [name, setName] = useState("Boriboon Srianekratha");
-    const [image, setImage] = useState(require("../assets/nanad.png"));
+const ProfileScreen = (): React.JSX.Element => {
+    const initialProfileImage = require("../assets/profileImage.jpg");
+    const newProfileImage = require("../assets/newProfileImage.png");
+
+    const [name, setName] = useState("Amonpan Chomklin");
+    const [profileImage, setProfileImage] = useState(initialProfileImage);
 
     const handleChangeName = () => {
-        setName(name == "Boriboon Srianekratha" ? "No name" : "Boriboon Srianekratha");
-    }
-    const handleChangeimage = () => {
-        setImage(image == require("../assets/cat.jpg") ? require("../assets/nanad.png") : require("../assets/cat.jpg") );
-    }
+        setName(name == "Amonpan Chomklin" ? "AMP." : "Amonpan Chomklin");
+    };
 
-
+    const handleChangeImage = () => {
+        setProfileImage(profileImage == initialProfileImage ? newProfileImage : initialProfileImage);
+    };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.profileContainer}>
-
-                <Image style={styles.profileImage} source={image} />
+        <View style={stylesProfile.container}>
+            <View style={stylesProfile.profileContainer}>
+                <Image source={profileImage} style={stylesProfile.profileImage} />
                 <View>
-                    <Text style={styles.profileName}>{name}</Text>
-                    <Button title='ChangeName' onPress={handleChangeName} />
-                    <Text>{"\n"}</Text>
-                    <Button title='Changeimage' onPress={handleChangeimage} />
+                    <Text style={stylesProfile.profileName}>{name}</Text>
+                    <Button title="Change Name" onPress={handleChangeName} />
+                    <Text>{'\n'}</Text>
+                    <Button title="Change Image" onPress={handleChangeImage} />
                 </View>
-
             </View>
-            <Login/>
+            <Login />
         </View>
-    )
-}
-
-export default ProfileScreen
-
-
+    );
+};
+export default ProfileScreen;
 
 

@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { HeaderButtonsProvider } from "react-navigation-header-buttons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import DetailScreen from "./screens/DetailScreen";
 
 const HomeStack = createNativeStackNavigator();
 
@@ -47,7 +48,8 @@ function HomeStackScreen() {
           headerTitleAlign: "center",
         }}
       />
-      <ProductStack.Screen name="CreatePost" component={CreatePostScreen} />
+     <HomeStack.Screen name='Products' component={ProductScreen}/>
+     <HomeStack.Screen name='Detail' component={DetailScreen}/>
     </ProductStack.Navigator>
   );
 }
@@ -59,6 +61,10 @@ function ProductStackScreen() {
       <ProductStack.Screen
         name="Product"
         component={ProductScreen}
+      />
+           <ProductStack.Screen
+        name="Detail"
+        component={DetailScreen}
       />
     </ProductStack.Navigator>
   );

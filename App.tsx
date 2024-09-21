@@ -12,79 +12,101 @@ import { HeaderButtonsProvider } from "react-navigation-header-buttons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import DetailScreen from "./screens/DetailScreen";
+import { useState } from "react";
+import LoginScreen from "./screens/LoginScreen";
+import Toast from "react-native-toast-message";
 
-const HomeStack = createNativeStackNavigator();
 
-const Drawer = createDrawerNavigator();
 const ProductStack = createNativeStackNavigator();
-
+const HomeStack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+const LoginStack = createDrawerNavigator();
+ 
 function HomeStackScreen() {
   return (
-    <ProductStack.Navigator
-      // screenOptions={
-      //   {
-      //     //global option for every stack
-      //     // headerStyle: { backgroundColor: "#20b2ae" },
-      //     // headerTintColor: "white",
-      //     // headerTitleStyle: { fontWeight: "bold" },
-      //     // headerTitleAlign: "center",
-      //   }
-      // }
+    <HomeStack.Navigator
       initialRouteName="Home"
+      screenOptions={{
+        // headerStyle:{backgroundColor:'#2302aa'},
+        // headerTintColor:'white',
+        headerTitleStyle: { fontWeight: "bold" },
+      }}
     >
-      <ProductStack.Screen
+      <HomeStack.Screen
         name="Home"
         component={HomeScreen}
-      // options={{ title: "หน้าหลัก" }}
+        // options={{title:'หน้าหลัก'}}
       />
-      <ProductStack.Screen
-        name="Product"
+      <HomeStack.Screen
+        name="About"
         component={AboutScreen}
         options={{
           title: "เกี่ยวกับเรา",
-          headerStyle: { backgroundColor: "#20b2ae" },
+          headerStyle: { backgroundColor: "#2302aa" },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerTitleAlign: "center",
+          //  headerTitleAlign:'center',
         }}
       />
-     <HomeStack.Screen name='Products' component={ProductScreen}/>
-     <HomeStack.Screen name='Detail' component={DetailScreen}/>
-    </ProductStack.Navigator>
+      {/* <HomeStack.Screen name='CreatePost' component={CreatePostScreen}/> */}
+    </HomeStack.Navigator>
   );
 }
-
 function ProductStackScreen() {
   return (
     <ProductStack.Navigator
+      initialRouteName="Product"
+      screenOptions={{
+        // headerStyle:{backgroundColor:'#2302aa'},
+        // headerTintColor:'white',
+        headerTitleStyle: { fontWeight: "bold" },
+      }}
     >
-      <ProductStack.Screen
-        name="Product"
-        component={ProductScreen}
-      />
-           <ProductStack.Screen
-        name="Detail"
-        component={DetailScreen}
-      />
+      <ProductStack.Screen name="Product" component={ProductScreen} />
+      <HomeStack.Screen name="Products" component={ProductScreen} />
+      <HomeStack.Screen name="Detail" component={DetailScreen} />
     </ProductStack.Navigator>
   );
 }
-
-const App = (): React.JSX.Element => {
+function LoginStackScreen() {
   return (
-    <SafeAreaProvider>
-      <HeaderButtonsProvider stackType="native">
-        <NavigationContainer>
-          <Drawer.Navigator screenOptions={{ headerShown: false }} drawerContent={props => <MenuScreen{...props} />}>
-            <Drawer.Screen name='HomeStack' component={HomeStackScreen} />
-            <Drawer.Screen name='ProductStack' component={ProductStackScreen} />
+    <LoginStack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerTitleStyle: { fontWeight: "bold" },
+      }}
+    >
+      <HomeStack.Screen name="Login" component={LoginScreen} />
+    </LoginStack.Navigator>
+  );
+}
+const App = (): React.JSX.Element => {
+  const [isLogin] = useState(false);
+ 
+  return (
+    <>
+        <SafeAreaProvider>
+      <NavigationContainer>
+        <HeaderButtonsProvider stackType="native">
+          {isLogin ? (
+            <Drawer.Navigator
+            screenOptions={{ headerShown: false }}
+            drawerContent={(props) => <MenuScreen {...props} />}
+          >
+            <Drawer.Screen name="HomeStack" component={HomeStackScreen} />
+            <Drawer.Screen name="Product" component={ProductStackScreen} />
           </Drawer.Navigator>
-        </NavigationContainer>
-      </HeaderButtonsProvider>
+          ) : (
+            <LoginStackScreen />
+          )}
+        </HeaderButtonsProvider>
+      </NavigationContainer>
     </SafeAreaProvider>
+    <Toast/>
+    </>
   );
 };
-
+ 
 export default App;
-
+ 
 const styles = StyleSheet.create({});
